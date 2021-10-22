@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.ui;
 
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -10,15 +11,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import br.senai.sp.jandira.model.Imc;
+
+
 public class Tela {
 
-	public void criarTela() {
+	public void iniciar() {
 		
-		JFrame minhaTela = new JFrame();
-		minhaTela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		minhaTela.setSize(400, 600);
-		minhaTela.setTitle("Calculadora de IMC");
-		minhaTela.setLayout(null);
+		JFrame iniciar = new JFrame();
+		iniciar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		iniciar.setSize(400, 600);
+		iniciar.setTitle("Calculadora de IMC");
+		iniciar.setLayout(null);
 		
 		JLabel lblTitulo = new JLabel();
 		lblTitulo.setText("Cálculo de IMC");
@@ -94,50 +98,32 @@ public class Tela {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				String Peso = txtPeso.getText();
-				String Altura = txtAltura.getText();
+				Imc imc = new Imc();
 				
-				double peso = Double.parseDouble(Peso);
-				double altura = Double.parseDouble(Altura);
+				imc.setPeso(txtPeso.getText());
+				imc.setAltura(txtAltura.getText());
 				
-				double imc = peso / (altura * altura );
-				
-				lblImc.setText(String.valueOf(imc));
-				
-				
-				if (imc < 18.5) {
-					lblEstadoPessoa.setText("Abaixo do peso");
-				} else if (imc >= 18.6 && imc <= 24.9) {
-					lblEstadoPessoa.setText("Peso ideal");
-				} else if (imc >= 25.0 && imc <= 29.9) {
-					lblEstadoPessoa.setText("Acima do peso");
-				} else if (imc >= 30 && imc <= 34.9) {
-					lblEstadoPessoa.setText("Obesidade grau I");
-				} else if (imc >= 35.0 && imc <= 39.9) {
-					lblEstadoPessoa.setText("Obesidade grau II");
-				} else {
-					lblEstadoPessoa.setText("Obesidade grau III");
-				}
-				
+				lblImc.setText(imc.mostrarImcString());
+				lblEstadoPessoa.setText(imc.MostrarStatusImc());
+
 			}
 		});
 		
-		
-		minhaTela.getContentPane().add(lblEstadoPessoa);
-		minhaTela.getContentPane().add(lblEstado);
-		minhaTela.getContentPane().add(lblImc);
-		minhaTela.getContentPane().add(lblValorImc);
-		minhaTela.getContentPane().add(lblResultado);
-		minhaTela.getContentPane().add(btnCalcular);
-		minhaTela.getContentPane().add(txtAltura);
-		minhaTela.getContentPane().add(lblAltura);
-		minhaTela.getContentPane().add(txtPeso);
-		minhaTela.getContentPane().add(lblPeso);
-		minhaTela.getContentPane().add(lblTitulo);
-		
+		iniciar.getContentPane().add(lblEstadoPessoa);
+		iniciar.getContentPane().add(lblEstado);
+		iniciar.getContentPane().add(lblImc);
+		iniciar.getContentPane().add(lblValorImc);
+		iniciar.getContentPane().add(lblResultado);
+		iniciar.getContentPane().add(btnCalcular);
+		iniciar.getContentPane().add(txtAltura);
+		iniciar.getContentPane().add(lblAltura);
+		iniciar.getContentPane().add(txtPeso);
+		iniciar.getContentPane().add(lblPeso);
+		iniciar.getContentPane().add(lblTitulo);
 		
 		
 		
-		minhaTela.setVisible(true);
+		
+		iniciar.setVisible(true);
 	}
 }
